@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bar</title>
+    <style>
+
+        :root {
+            --background-color: hsl(0, 0%, 12%);
+            --background-color2: hsl(0, 0%, 18%);
+            --accent-color1: hsl(180, 50%, 50%);
+            --border-radius: 9px;
+        }
+        body {
+            background-color: var(--background-color);
+        }
+
+        .bar {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 84px;
+            height: 16px;
+            padding: 2px;
+            border-radius: var(--border-radius);
+            background-color: var(--background-color2);
+        }
+
+        .pixel {
+            float: left;
+            width: 10px;
+            height: 10px;
+            margin: 3px;
+            border-radius: var(--border-radius);
+            background-color: var(--accent-color1);
+            filter: brightness(50%);
+        }
+
+        .loader {
+            animation: light 1s linear infinite;
+        }
+
+        @keyframes light {
+            0%, 25%, 75%, 100% {
+                filter: brightness(50%);
+            }
+            50% {
+                filter:brightness(150%);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="bar">
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+    </div>
+
+    <script>
+
+        const bar = document.querySelector(".bar");
+        const pixels = document.querySelectorAll(".pixel");
+        for (let i = 0; i < pixels.length; i++) {
+            setTimeout(() => {
+                pixels[i].classList.add("loader");
+            }, i * 200);
+        }
+
+    </script>
+</body>
+</html>

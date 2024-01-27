@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>disco</title>
+    <style>
+        :root {
+            --backgroud-color: hsl(0, 0%, 12%);
+            --accent-color: hsl(60, 50%, 50%);
+        }
+
+        body {
+            background-color: var(--backgroud-color);
+        }
+
+        .outer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--backgroud-color);
+        }
+
+        .pixel {
+            float: left;
+            width: 5px;
+            height: 5px;
+            padding: 1px;
+            border-radius: 2px;
+            background-color: var(--accent-color);
+            opacity: 0;
+        }
+
+        .loader {
+            background-color: var(--accent-color);
+            animation: flash 2s ease-in-out infinite;
+        }
+
+        @keyframes flash {
+            0%, 100% {
+                opacity: 0;
+                filter: brightness(0%);
+            }
+            50% {
+                opacity: 1;
+                filter: brightness(100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer"></div>
+
+    <script>
+
+        const outer = document.querySelector(".outer");
+        for (let i = 0; i < 36; i++) {
+            const pixel = document.createElement("div");
+            pixel.classList.add("pixel");
+            outer.appendChild(pixel);
+        }
+        const pixels = document.querySelectorAll(".pixel");
+        pixels.forEach(e => {
+            delay = Math.random()*2000;
+            setTimeout(() => {
+                e.classList.add("loader");
+            }, delay);
+        })
+
+    </script>
+
+
+
+</body>
+</html>
